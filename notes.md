@@ -1,0 +1,6 @@
+- [x] get the current time in the video
+- [x] show the dialog on pause
+- [x] easy way to specify stuff
+- [x] continue button?
+- [ ] click to set the video
+    - not needed. Just name them the same each time

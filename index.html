@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+
+<video id="myVideo">
+<!-- The video is expected to be saved as "video.mp4" in the content/ directory -->
+  <source src="content/video.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<!-- This next portion determines the style of the prompt -->
+<div id="prompt" style="display:none">
+  <h1 id="prompt-title">How did you feel at this point?</h1>
+  <p id="prompt-body">Please speak your response into the provided video recorder.</p>
+  <button class="btn" onclick="playVideo()">Resume</button>
+</div>
+    <script type="text/javascript" src="js/settings.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
+
