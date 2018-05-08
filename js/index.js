@@ -1,4 +1,5 @@
 var video = document.getElementById("myVideo");
+var startMsg = document.getElementById("startMsg");
 var usrPrompt = document.getElementById("prompt");
 var promptTitle = document.getElementById("prompt-title");
 var promptBody = document.getElementById("prompt-body");
@@ -30,6 +31,7 @@ function displayPrompt() {
 
 video.onclick = function() {
     if (video.paused && video.currentTime === 0) {
+        startMsg.style = 'display:none';  // Hide the initial message
         video.play();
         setTimeout(checkPause, SETTINGS.INITIAL_DELAY * 1000);
     }
@@ -48,3 +50,6 @@ function checkPause() {
 function shouldStopAtTime(time) {
     return time > 0;
 }
+
+// Position the start message
+startMsg.innerHTML = SETTINGS.START_MESSAGE;

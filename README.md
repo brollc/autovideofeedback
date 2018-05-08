@@ -3,4 +3,5 @@ This is used to show a user a video which will automatically stop and display a 
 
 ## How to use
 - Copy your desired video to the `content/` directory and name it `video.mp4`
-- edit the settings in `js/settings.js`
+- Edit the settings in `js/settings.js`
+- Open index.html with a web browser (tested in Google Chrome)
