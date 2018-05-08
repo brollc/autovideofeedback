@@ -15,12 +15,15 @@ function playVideo() {
   }
 }
 
+var timerElement = document.getElementById('timer');
 function displayPrompt() {
     console.log('displaying prompt at ' + video.currentTime);
     video.pause();
     usrPrompt.style = 'display:block';  // show the button
     if (SETTINGS.MAX_PROMPT_WAIT > 0) {
         var currentTime = video.currentTime;
+        var timer = new Timer(timerElement, SETTINGS.MAX_PROMPT_WAIT);
+        timer.start();
         setTimeout(function() {
             if (video.paused && video.currentTime === currentTime) {
                 playVideo();

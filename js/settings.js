@@ -4,6 +4,6 @@ var SETTINGS = {
     PROMPT_DESCRIPTION: 'Please respond into your audio recorder. Press "Resume" when finished',
     INITIAL_DELAY: 2,  // The delay (in seconds) before starting the prompts
     PROMPT_INTERVAL: 1,  // the delay between prompts
-    MAX_PROMPT_WAIT: -1,  // max amount of time to wait for response to the prompt. <= 0 means unlimited
+    MAX_PROMPT_WAIT: 10,  // max amount of time to wait for response to the prompt. <= 0 means unlimited
     START_MESSAGE: 'Click to Start',
 };
