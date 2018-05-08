@@ -15,8 +15,17 @@ function playVideo() {
 }
 
 function displayPrompt() {
+    console.log('displaying prompt at ' + video.currentTime);
     video.pause();
     usrPrompt.style = 'display:block';  // show the button
+    if (SETTINGS.MAX_PROMPT_WAIT > 0) {
+        var currentTime = video.currentTime;
+        setTimeout(function() {
+            if (video.paused && video.currentTime === currentTime) {
+                playVideo();
+            }
+        }, SETTINGS.MAX_PROMPT_WAIT*1000);
+    }
 }
 
 video.onclick = function() {
@@ -27,7 +36,6 @@ video.onclick = function() {
 };
 
 function checkPause() {
-    console.log('checkPause');
     if (!video.paused) {
         displayPrompt();
     }
