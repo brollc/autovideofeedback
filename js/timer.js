@@ -1,28 +1,35 @@
-var Timer = function(element, time) {
+var Timer = function(element) {
     this.element = element;
-    this.totalTime = time;
-    this.remainingTime = time;
     this.startTime = null;
-};
+    this.stopped = false;
 
-Timer.prototype.start = function() {
     var self = this;
-    this.startTime = Date.now()/1000;
-
     var tick = function() {
         setTimeout(function() {
-            self.refresh();
-            if (self.remainingTime > 0) {
-                tick();
+            if (self.startTime) {
+              self.refresh();
             }
-        }, 250);
+            tick();
+        }, 100);
     };
 
     tick();
 };
 
+Timer.prototype.set = function(time) {
+  this.totalTime = time;
+  this.remainingTime = time;
+
+  this.startTime = Date.now()/1000;
+};
+
 Timer.prototype.refresh = function() {
     var currentTime = Date.now()/1000;
     this.remainingTime = this.totalTime - Math.floor(currentTime - this.startTime);
-    this.element.innerHTML = this.remainingTime;
+
+    if (this.remainingTime >= 0) {
+        this.element.innerHTML = this.remainingTime;
+    } else {
+        this.element.innerHTML = '';
+    }
 };

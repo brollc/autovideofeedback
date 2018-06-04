@@ -16,19 +16,39 @@ function playVideo() {
 }
 
 var timerElement = document.getElementById('timer');
-function displayPrompt() {
+var currentPromptIndex = -1;
+var timer = new Timer(timerElement);
+function displayPrompt(index=0) {
     console.log('displaying prompt at ' + video.currentTime);
     video.pause();
     usrPrompt.style = 'display:block';  // show the button
-    if (SETTINGS.MAX_PROMPT_WAIT > 0) {
+
+    // Set the correct prompt text and description from the settings
+    var title = SETTINGS.PROMPT_TITLES[index];
+    var desc = SETTINGS.PROMPT_DESCRIPTIONS[index] || '';
+    promptTitle.innerHTML = title;
+    promptBody.innerHTML = desc;
+    currentPromptIndex = index;
+
+    var maxPromptWait = SETTINGS.PROMPT_DURATIONS[index];
+    if (maxPromptWait > 0) {
         var currentTime = video.currentTime;
-        var timer = new Timer(timerElement, SETTINGS.MAX_PROMPT_WAIT);
-        timer.start();
+        timer.set(maxPromptWait);
         setTimeout(function() {
-            if (video.paused && video.currentTime === currentTime) {
-                playVideo();
+            if (video.paused && video.currentTime === currentTime && currentPromptIndex === index) {
+              playNext();
             }
-        }, SETTINGS.MAX_PROMPT_WAIT*1000);
+        }, maxPromptWait*1000);
+    }
+}
+
+function playNext() {
+    var nextIndex = currentPromptIndex + 1;
+    if (nextIndex < SETTINGS.PROMPT_TITLES.length) {  // if there is another prompt to show
+        displayPrompt(nextIndex);
+    } else {  // finished all the prompts, resume the video
+        currentPromptIndex = -1;
+        playVideo();
     }
 }
 
