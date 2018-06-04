@@ -1,4 +1,4 @@
-# Video Auto Prompter
+# Auto Video Feedback
 This is used to show a user a video which will automatically stop and display a prompt for the user to respond (outside of the video).
 
 ## How to use
