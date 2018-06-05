@@ -1,5 +1,5 @@
 var video = document.getElementById("myVideo");
-var startMsg = document.getElementById("startMsg");
+var startMsg = document.getElementById("startEndMsg");
 var usrPrompt = document.getElementById("prompt");
 var promptTitle = document.getElementById("prompt-title");
 var promptBody = document.getElementById("prompt-body");
@@ -10,7 +10,7 @@ function playVideo() {
     video.play();
   }
   usrPrompt.style = 'display:none';  // hide the button
-  if (promptCount < SETTINGS.PROMPT_COUNT) {
+  if (promptCount < SETTINGS.PROMPT_COUNT+1) {
       setTimeout(checkPause, SETTINGS.PROMPT_INTERVAL * 1000);
   }
 }
@@ -55,8 +55,10 @@ function playNext() {
     }
 }
 
+video.currentTime = SETTINGS.START_TIME;
+SETTINGS.END_TIME = SETTINGS.END_TIME || video.duration;
 video.onclick = function() {
-    if (video.paused && video.currentTime === 0) {
+    if (video.paused && video.currentTime === SETTINGS.START_TIME) {
         startMsg.style = 'display:none';  // Hide the initial message
         video.play();
         setTimeout(checkPause, SETTINGS.INITIAL_DELAY * 1000);
@@ -68,9 +70,12 @@ function checkPause() {
         promptCount++;
         displayPrompt();
     }
-    if (video.currentTime === video.duration) {
+    if (video.currentTime >= SETTINGS.END_TIME) {
+        console.log('stopped!');
         // Display finished message
-        usrPrompt.style = 'display:block';  // show the button
+        //usrPrompt.style = 'display:block';  // show the button
+        startMsg.style = 'display:block';  // Hide the initial message
+        startMsg.innerHTML = SETTINGS.END_MESSAGE;
     }
 }
 
