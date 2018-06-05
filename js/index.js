@@ -4,13 +4,13 @@ var usrPrompt = document.getElementById("prompt");
 var promptTitle = document.getElementById("prompt-title");
 var promptBody = document.getElementById("prompt-body");
 
+var promptCount = 0;
 function playVideo() {
   if (video.paused) {
     video.play();
   }
   usrPrompt.style = 'display:none';  // hide the button
-  SETTINGS.PROMPT_COUNT--;
-  if (SETTINGS.PROMPT_COUNT > 0) {
+  if (promptCount < SETTINGS.PROMPT_COUNT) {
       setTimeout(checkPause, SETTINGS.PROMPT_INTERVAL * 1000);
   }
 }
@@ -19,6 +19,9 @@ var timerElement = document.getElementById('timer');
 var currentPromptIndex = -1;
 var timer = new Timer(timerElement);
 function displayPrompt(index=0) {
+    if (index === 0 && SETTINGS.SPEAK_SECTIONS) {
+        announceSection();
+    }
     console.log('displaying prompt at ' + video.currentTime);
     video.pause();
     usrPrompt.style = 'display:block';  // show the button
@@ -62,6 +65,7 @@ video.onclick = function() {
 
 function checkPause() {
     if (!video.paused) {
+        promptCount++;
         displayPrompt();
     }
     if (video.currentTime === video.duration) {
@@ -72,6 +76,31 @@ function checkPause() {
 
 function shouldStopAtTime(time) {
     return time > 0;
+}
+
+var synth = window.speechSynthesis;
+var NumberFor = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'ten',
+    'eleven',
+    'twelve',
+    'thirteen',
+];
+
+function announceSection() {
+  var msg = `Section ${NumberFor[promptCount]}`;
+  var utterThis = new SpeechSynthesisUtterance(msg);
+  utterThis.voice = synth.getVoices().find(voice => voice.lang === 'en-GB');
+  synth.speak(utterThis);
 }
 
 // Position the start message
