@@ -85,6 +85,13 @@ VideoPrompter.prototype.initialize = function () {
     this.timer = new Timer(this.timerElement);
     this.hide(this.usrPrompt);
     this.startMsg.innerHTML = this.opts.START_MESSAGE;
+    this.handlers = {};
+    this.handlers.onend = this.handlers.onprompt = () => {};
+};
+
+VideoPrompter.prototype.on = function (event, handler) {
+    var fnName = 'on' + event;
+    this.handlers[fnName] = handler;
 };
 
 VideoPrompter.prototype.hide = function (element) {
@@ -119,7 +126,6 @@ VideoPrompter.prototype.displayPrompt = function (index=0) {
     if (index === 0 && this.opts.SPEAK_SECTIONS) {
         this.announceSection();
     }
-    console.log('displaying prompt at ' + this.video.currentTime);
     this.video.pause();
     this.show(this.usrPrompt);
 
@@ -160,6 +166,7 @@ VideoPrompter.prototype.checkPause = function () {
     if (!this.video.paused && this.hasRemainingPrompts()) {
         this.promptCount++;
         this.displayPrompt();
+        this.handlers.onprompt(this.promptCount);
     } else if (this.isVideoAtEnd()) {
         this.onVideoComplete();
     }
@@ -169,6 +176,7 @@ VideoPrompter.prototype.onVideoComplete = function () {
     this.show(this.startMsg);
     this.startMsg.innerHTML = this.opts.END_MESSAGE;
     this.video.pause();
+    this.handlers.onend();
 };
 
 VideoPrompter.prototype.isVideoAtEnd = function () {
