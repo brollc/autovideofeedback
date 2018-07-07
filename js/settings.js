@@ -6,8 +6,9 @@ var SETTINGS = {
       'What was going through your mind at this point?',
     ],
     PROMPT_DESCRIPTIONS: [
-      'Please state out loud which of the following emotions you were feeling at this point in the interaction:\n Angry Sad Happy Fearful ',
-      'Please state what you were thinking at this point? Respond out loud. Press "Resume" when finished',
+      'Please state out loud which of the following emotions you were feeling at this point in the interaction:\n' +
+      '- Angry\n- Sad\n- Happy\n- Fearful',
+      'Please state what you were thinking at this point? Respond out loud. Press "Next Clip" when finished',
     ],
     PROMPT_DURATIONS: [
       10,
@@ -20,4 +21,5 @@ var SETTINGS = {
 
     START_TIME: 2,  // The time at which to start the video
     END_TIME: 6,  // The time at which to end the video
+    VIDEO_URL: 'content/video.mp4',  // The file to use for the video
 };
