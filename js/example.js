@@ -61,7 +61,7 @@ tour.addStep('prompt-timer', {
 });
 
 tour.addStep('prompt-next', {
-    text: 'Click here if you have answered the prompt and wish to continue on to the next prompt.',
+    text: 'Click the button below if you have answered the prompt and wish to continue on to the next prompt.',
     attachTo: '.btn top',
     buttons: [
         {
