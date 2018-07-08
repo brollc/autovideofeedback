@@ -8,7 +8,7 @@ var VideoPrompter = function(element, opts) {
 
 VideoPrompter.prototype.configure = function (opts) {
     var DEFAULTS = {
-        START_MESSAGE: 'Click anywhere to Start',
+        START_MESSAGE: 'Click anywhere to start',
         END_MESSAGE: 'Feedback Complete. Thank you for your time!',
         PROMPT_TITLES: [
           'How were you feeling at this point? ',
