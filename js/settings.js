@@ -1,7 +1,7 @@
 const minutes = 60;
 const SETTINGS = {
     START_MESSAGE: 'Click anywhere to Start',
-    END_MESSAGE: 'Feedback Complete. Thank you for your time!',
+    END_MESSAGE: 'You have now completed this portion of the study. An interviewer will be in shortly.',
     PROMPT_TITLES: [
       'How were you feeling at this point? ',
       'What was going through your mind at this point?',
