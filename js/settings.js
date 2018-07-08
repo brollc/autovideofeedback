@@ -1,6 +1,6 @@
 const minutes = 60;
 const SETTINGS = {
-    START_MESSAGE: 'Click anywhere to Start',
+    START_MESSAGE: 'Click on the video to start',
     END_MESSAGE: 'You have now completed this portion of the study. An interviewer will be in shortly.',
     PROMPT_TITLES: [
       'How were you feeling at this point? ',
