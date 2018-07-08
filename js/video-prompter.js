@@ -56,7 +56,7 @@ VideoPrompter.prototype.initialize = function () {
     this.promptBody.setAttribute('class', 'prompt-body');
     this.timerElement.setAttribute('class', 'timer');
     this.btn.setAttribute('class', 'btn');
-    this.btn.innerHTML = 'Next Clip';
+    this.btn.innerHTML = 'Next Prompt';
 
     this.element.appendChild(this.video);
     this.element.appendChild(this.startMsg);
@@ -123,6 +123,7 @@ VideoPrompter.prototype.hasRemainingPrompts = function() {
 };
 
 VideoPrompter.prototype.displayPrompt = function (index=0) {
+    this.currentPromptIndex = index;
     if (index === 0 && this.opts.SPEAK_SECTIONS) {
         this.announceSection();
     }
@@ -134,7 +135,7 @@ VideoPrompter.prototype.displayPrompt = function (index=0) {
     var desc = this.opts.PROMPT_DESCRIPTIONS[index] || '';
     this.promptTitle.innerHTML = title;
     this.promptBody.innerHTML = desc.replace(/\n/g, '<br/>');
-    this.currentPromptIndex = index;
+    this.updateNextBtnText();
 
     var maxPromptWait = this.opts.PROMPT_DURATIONS[index];
     if (maxPromptWait > 0) {
@@ -149,7 +150,17 @@ VideoPrompter.prototype.displayPrompt = function (index=0) {
             }
         }, maxPromptWait*1000);
     }
-}
+    this.handlers.onprompt(this.promptCount, this.currentPromptIndex);
+};
+
+VideoPrompter.prototype.updateNextBtnText = function () {
+    if (this.currentPromptIndex < this.opts.PROMPT_TITLES.length - 1) {
+        this.btn.innerHTML = 'Next Prompt';
+    } else {
+        this.btn.innerHTML = 'Next Clip';
+    }
+
+};
 
 VideoPrompter.prototype.playNext = function () {
     var nextIndex = this.currentPromptIndex + 1;
@@ -166,7 +177,6 @@ VideoPrompter.prototype.checkPause = function () {
     if (!this.video.paused && this.hasRemainingPrompts()) {
         this.promptCount++;
         this.displayPrompt();
-        this.handlers.onprompt(this.promptCount);
     } else if (this.isVideoAtEnd()) {
         this.onVideoComplete();
     }
