@@ -1,4 +1,5 @@
-var SETTINGS = {
+const minutes = 60;
+const SETTINGS = {
     START_MESSAGE: 'Click anywhere to Start',
     END_MESSAGE: 'Feedback Complete. Thank you for your time!',
     PROMPT_TITLES: [
@@ -12,14 +13,14 @@ var SETTINGS = {
     ],
     PROMPT_DURATIONS: [
       10,
-      5
+      20
     ],  // max amount of time to wait for response to the prompt. <= 0 means unlimited
-    INITIAL_DELAY: 2,  // The delay (in seconds) before starting the prompts
-    PROMPT_INTERVAL: 1,  // the delay between prompts
-    PROMPT_COUNT: 2,  // number of prompts to show. -1 for unlimited
+    INITIAL_DELAY: 30,  // The delay (in seconds) before starting the prompts
+    PROMPT_INTERVAL: 30,  // the delay between prompts
+    PROMPT_COUNT: 8,  // number of prompts to show. -1 for unlimited
     SPEAK_SECTIONS: true,  // say the current section (via the speakers)
 
-    START_TIME: 2,  // The time at which to start the video
-    END_TIME: 6,  // The time at which to end the video
+    START_TIME: 3*minutes,  // The time at which to start the video
+    END_TIME: 7*minutes,  // The time at which to end the video
     VIDEO_URL: 'content/video.mp4',  // The file to use for the video
 };
