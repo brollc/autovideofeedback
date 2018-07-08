@@ -4,6 +4,7 @@ SETTINGS.END_TIME = 7.5;
 SETTINGS.INITIAL_DELAY = 7.5;
 SETTINGS.START_TIME = 0;
 SETTINGS.PROMPT_COUNT = 1;
+SETTINGS.PROMPT_DURATIONS = [20, 10];
 
 const player = new VideoPrompter(document.getElementById('replayer'), SETTINGS);
 
@@ -99,7 +100,7 @@ tour.start();
 
 player.on('end', function() {
     player.hide(player.startMsg);
-    tour.next();
+    tour.show('finished');
 });
 
 player.on('prompt', function() {
