@@ -98,6 +98,7 @@ tour.addStep('finished', {
 tour.start();
 
 player.on('end', function() {
+    player.hide(player.startMsg);
     tour.next();
 });
 
