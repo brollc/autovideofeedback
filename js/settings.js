@@ -8,7 +8,7 @@ const SETTINGS = {
     ],
     PROMPT_DESCRIPTIONS: [
       'Please state out loud which of the following emotions you were feeling at this point in the interaction:\n' +
-      '- Angry\n- Sad\n- Happy\n- Fearful',
+      '- Angry\n- Sad\n- Happy\n- Fearful\n- Surprised\n- Disgusted\n',
       'Please state what you were thinking at this point? Respond out loud. Press "Next Clip" when finished',
     ],
     PROMPT_DURATIONS: [
