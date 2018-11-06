@@ -3,13 +3,13 @@ const SETTINGS = {
     START_MESSAGE: 'Click on the video to start',
     END_MESSAGE: 'You have now completed this portion of the study. An interviewer will be in shortly.',
     PROMPT_TITLES: [
-      'How were you feeling at this point? ',
       'What was going through your mind at this point?',
+      'How were you feeling at this point? ',
     ],
     PROMPT_DESCRIPTIONS: [
+      'Please state what you were thinking at this point? Respond out loud. Press "Next Clip" when finished',
       'Please state out loud which of the following emotions you were feeling at this point in the interaction:\n' +
       '- Angry\n- Sad\n- Happy\n- Fearful\n- Surprised\n- Disgusted\n',
-      'Please state what you were thinking at this point? Respond out loud. Press "Next Clip" when finished',
     ],
     PROMPT_DURATIONS: [
       10,
