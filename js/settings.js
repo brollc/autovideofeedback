@@ -12,8 +12,8 @@ const SETTINGS = {
       '- Angry\n- Sad\n- Happy\n- Fearful\n- Surprised\n- Disgusted\n',
     ],
     PROMPT_DURATIONS: [
+      20,
       10,
-      20
     ],  // max amount of time to wait for response to the prompt. <= 0 means unlimited
     INITIAL_DELAY: 30,  // The delay (in seconds) before starting the prompts
     PROMPT_INTERVAL: 30,  // the delay between prompts
