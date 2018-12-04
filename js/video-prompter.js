@@ -15,7 +15,7 @@ VideoPrompter.prototype.configure = function (opts) {
           'How were you feeling at this point? ',
         ],
         PROMPT_DESCRIPTIONS: [
-          'Please state what you were thinking at this point? Respond out loud. Press "Next Clip" when finished',
+          'Please state what you were thinking at this point? Respond out loud.',
           'Please state out loud which of the following emotions you were feeling at this point in the interaction:\n' +
           '- Angry\n- Sad\n- Happy\n- Fearful',
         ],
@@ -48,15 +48,12 @@ VideoPrompter.prototype.initialize = function () {
     this.promptTitle = document.createElement('h1');
     this.promptBody = document.createElement('p');
     this.timerElement = document.createElement('p');
-    this.btn = document.createElement('button');
 
     this.startMsg.setAttribute('class', 'startEndMsg');
     this.usrPrompt.setAttribute('class', 'prompt');
     this.promptTitle.setAttribute('class', 'prompt-title');
     this.promptBody.setAttribute('class', 'prompt-body');
     this.timerElement.setAttribute('class', 'timer');
-    this.btn.setAttribute('class', 'btn');
-    this.btn.innerHTML = 'Next Prompt';
 
     this.element.appendChild(this.video);
     this.element.appendChild(this.startMsg);
@@ -64,7 +61,6 @@ VideoPrompter.prototype.initialize = function () {
     this.usrPrompt.appendChild(this.promptTitle);
     this.usrPrompt.appendChild(this.promptBody);
     this.usrPrompt.appendChild(this.timerElement);
-    this.usrPrompt.appendChild(this.btn);
 
     this.video.setAttribute('src', this.opts.VIDEO_URL);
     this.video.setAttribute('type', 'video/mp4');
@@ -79,7 +75,6 @@ VideoPrompter.prototype.initialize = function () {
         }
     };
 
-    this.btn.onclick = () => this.playNext();
 
     this.currentPromptIndex = -1;
     this.timer = new Timer(this.timerElement);
@@ -135,7 +130,6 @@ VideoPrompter.prototype.displayPrompt = function (index=0) {
     var desc = this.opts.PROMPT_DESCRIPTIONS[index] || '';
     this.promptTitle.innerHTML = title;
     this.promptBody.innerHTML = desc.replace(/\n/g, '<br/>');
-    this.updateNextBtnText();
 
     var maxPromptWait = this.opts.PROMPT_DURATIONS[index];
     if (maxPromptWait > 0) {
@@ -151,15 +145,6 @@ VideoPrompter.prototype.displayPrompt = function (index=0) {
         }, maxPromptWait*1000);
     }
     this.handlers.onprompt(this.promptCount, this.currentPromptIndex);
-};
-
-VideoPrompter.prototype.updateNextBtnText = function () {
-    if (this.currentPromptIndex < this.opts.PROMPT_TITLES.length - 1) {
-        this.btn.innerHTML = 'Next Prompt';
-    } else {
-        this.btn.innerHTML = 'Next Clip';
-    }
-
 };
 
 VideoPrompter.prototype.playNext = function () {

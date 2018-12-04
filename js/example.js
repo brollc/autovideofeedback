@@ -60,17 +60,6 @@ tour.addStep('prompt-timer', {
     ]
 });
 
-tour.addStep('prompt-next', {
-    text: 'Click the button below if you have answered the prompt and wish to continue on to the next prompt.',
-    attachTo: '.btn top',
-    buttons: [
-        {
-            text: 'Next',
-            action: tour.hide
-        }
-    ]
-});
-
 tour.addStep('more-prompts', {
     text: 'After completing the prompts, the next clip will play.',
     attachTo: '.btn top',
