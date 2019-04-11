@@ -20,7 +20,7 @@ const SETTINGS = {
     PROMPT_COUNT: 8,  // number of prompts to show. -1 for unlimited
     SPEAK_SECTIONS: true,  // say the current section (via the speakers)
 
-    START_TIME: 3*minutes,  // The time at which to start the video
+    START_TIME: 4*minutes,  // The time at which to start the video
     END_TIME: 7*minutes,  // The time at which to end the video
     VIDEO_URL: 'content/video.mp4',  // The file to use for the video
 };
