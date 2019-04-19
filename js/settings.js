@@ -21,6 +21,6 @@ const SETTINGS = {
     SPEAK_SECTIONS: true,  // say the current section (via the speakers)
 
     START_TIME: 4*minutes,  // The time at which to start the video
-    END_TIME: 7*minutes,  // The time at which to end the video
+    END_TIME: 8*minutes,  // The time at which to end the video
     VIDEO_URL: 'content/video.mp4',  // The file to use for the video
 };
